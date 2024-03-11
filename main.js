@@ -48,7 +48,7 @@ function startGame() {
       checkWinCondition();
     };
   });
-  countdown(3);
+  countdown(120);
 }
 
 let stopClickingTimeout;
