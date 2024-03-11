@@ -25,4 +25,4 @@ Welcome to the Memory Matching Game! This is a simple yet engaging game where pl
 - 
 Enjoy the game and have fun matching those cards!
 
-[Take a Look](#)
+## [Take a Look](https://abdulaziz-m895.github.io/Memory-Game/)
