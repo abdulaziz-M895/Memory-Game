@@ -46,6 +46,7 @@ body {
   width: 100%;
   border-bottom: 2px solid #2196f3;
   padding-bottom: 20px;
+  flex-wrap: wrap;
 }
 .info-container .leaderboard {
   width: 100%;
@@ -68,8 +69,14 @@ body {
   color: white;
 }
 .info-container ul li:nth-of-type(3) {
-  background-color:  #B08D57;
+  background-color: #b08d57;
   color: white;
+}
+@media (max-width: 767px) {
+  .info-container .info {
+    justify-content: center;
+    gap: 25px;
+  }
 }
 .memory-game-blocks {
   display: grid;
@@ -99,20 +106,6 @@ body {
   font-size: 140px;
   font-weight: bold;
 }
-@media (max-width: 767px) {
-  .memory-game-blocks {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .memory-game-blocks .game-block {
-    height: 120px;
-  }
-  .memory-game-blocks .game-block .front {
-    line-height: 120px;
-  }
-  .memory-game-blocks .game-block .front::before {
-    font-size: 100px;
-  }
-}
 .memory-game-blocks .game-block .back {
   background-color: #ffffff;
   display: flex;
@@ -123,6 +116,23 @@ body {
 .memory-game-blocks .game-block .back img {
   width: 90%;
   margin: auto;
+}
+@media (max-width: 767px) {
+  .memory-game-blocks {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .memory-game-blocks .game-block {
+    height: 100px;
+  }
+  .memory-game-blocks .game-block .front {
+    line-height: 100px;
+  }
+  .memory-game-blocks .game-block .front::before {
+    font-size: 80px;
+  }
+  .memory-game-blocks .game-block .back img {
+    width: 83%;
+  }
 }
 .memory-game-blocks .game-block .face {
   position: absolute;
