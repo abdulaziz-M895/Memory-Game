@@ -218,6 +218,3 @@ function makeLeaderboard() {
     }
   }
 }
-
-console.log(leaderboardData.length);
-console.log(leaderboardData[0].playerName);
