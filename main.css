@@ -37,6 +37,39 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+}
+.info-container .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 2px solid #2196f3;
+  padding-bottom: 20px;
+}
+.info-container .leaderboard {
+  width: 100%;
+  text-align: center;
+}
+.info-container ul {
+  padding: 0;
+  margin: 0;
+}
+.info-container h2 {
+  margin: 20px 0 10px;
+  color: #caa04a;
+}
+.info-container ul li:first-of-type {
+  background-color: #caa04a;
+  color: white;
+}
+.info-container ul li:nth-of-type(2) {
+  background-color: silver;
+  color: white;
+}
+.info-container ul li:nth-of-type(3) {
+  background-color:  #B08D57;
+  color: white;
 }
 .memory-game-blocks {
   display: grid;

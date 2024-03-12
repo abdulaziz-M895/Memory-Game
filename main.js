@@ -6,11 +6,19 @@ document
     if (userName === null || userName === "") {
       document.querySelector(".name span").innerHTML = "Unknown";
     } else {
-      document.querySelector(".name span").innerHTML = userName;
+      document.querySelector(".name span").innerHTML =
+        userName.slice(0, 1).toUpperCase() + userName.slice(1);
     }
     this.parentElement.remove();
     startGame();
+    makeLeaderboard();
   });
+
+window.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    document.querySelector(".control-buttons span").click();
+  }
+});
 
 const blocksContainer = document.querySelector(".memory-game-blocks");
 const allBlocks = Array.from(document.querySelectorAll(".game-block"));
@@ -177,9 +185,39 @@ function saveLeaderboardData(data) {
 }
 
 // Function to add a new entry to the leaderboard
-function addToLeaderboard(playerName, score) {
-  const leaderboardData = getLeaderboardData();
-  leaderboardData.push({ playerName, score });
-  leaderboardData.sort((a, b) => b.score - a.score); // Sort in descending order
+const leaderboardData = getLeaderboardData();
+function addToLeaderboard(playerName, wrongTries) {
+  playerName == "" || playerName == null
+    ? (playerName = "Unknown")
+    : playerName;
+  leaderboardData.push({ playerName, wrongTries });
+  leaderboardData.sort((a, b) => b.wrongTries - a.wrongTries); // Sort in descending order
   saveLeaderboardData(leaderboardData);
 }
+
+function makeLeaderboard() {
+  if (leaderboardData.length == 0) {
+    const win = document.createElement("p");
+    win.innerHTML = "Victory earns you a spot on the Leaderboard.";
+    win.style.cssText = "margin-bottom: 0;";
+    document.querySelector(".info-container").append(win);
+  } else {
+    leaderboardData.sort(
+      (a, b) => parseInt(a.wrongTries) - parseInt(b.wrongTries)
+    ); // Sort in ascending order by wrongTries
+    for (let i = 0; i < leaderboardData.length; i++) {
+      const li = document.createElement("li");
+      li.classList.add("player");
+      li.innerHTML = `<span>${
+        leaderboardData[i].playerName.slice(0, 1).toUpperCase() +
+        leaderboardData[i].playerName.slice(1)
+      }</span> <span>Wrong Tries: ${leaderboardData[i].wrongTries}</span>`;
+      li.style.cssText =
+        "display: flex; align-items: center; justify-content: space-between; padding: 15px; width: 100%; margin-bottom: 10px;";
+      document.querySelector(".leaderboard ul").append(li);
+    }
+  }
+}
+
+console.log(leaderboardData.length);
+console.log(leaderboardData[0].playerName);
