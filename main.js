@@ -1,6 +1,13 @@
+let userName;
 document
   .querySelector(".control-buttons span")
   .addEventListener("click", function () {
+    userName = prompt("What's you name?");
+    if (userName === null || userName === "") {
+      document.querySelector(".name span").innerHTML = "Unknown";
+    } else {
+      document.querySelector(".name span").innerHTML = userName;
+    }
     this.parentElement.remove();
     startGame();
   });
@@ -65,6 +72,7 @@ function stopClicking() {
   }
 }
 
+let triesCount = 0;
 function checkMatch(firstBlock, secondBlock) {
   let triesElement = document.querySelector(".tries span");
 
@@ -78,6 +86,7 @@ function checkMatch(firstBlock, secondBlock) {
     document.querySelector("audio#success").play();
   } else {
     triesElement.innerHTML = parseInt(triesElement.innerHTML) + 1;
+    triesCount++;
 
     document.querySelector("audio#fail").play();
 
@@ -99,6 +108,8 @@ function gameWon() {
 
   div.classList.add("pop-up-won");
   document.body.append(div);
+
+  addToLeaderboard(userName, triesCount);
 }
 
 function checkWinCondition() {
@@ -152,4 +163,23 @@ function countdown(duration) {
       blocksContainer.classList.add("no-clicking");
     }
   }, 1000);
+}
+
+// Function to retrieve leaderboard data from local storage
+function getLeaderboardData() {
+  const leaderboardData = localStorage.getItem("leaderboard");
+  return leaderboardData ? JSON.parse(leaderboardData) : [];
+}
+
+// Function to save leaderboard data to local storage
+function saveLeaderboardData(data) {
+  localStorage.setItem("leaderboard", JSON.stringify(data));
+}
+
+// Function to add a new entry to the leaderboard
+function addToLeaderboard(playerName, score) {
+  const leaderboardData = getLeaderboardData();
+  leaderboardData.push({ playerName, score });
+  leaderboardData.sort((a, b) => b.score - a.score); // Sort in descending order
+  saveLeaderboardData(leaderboardData);
 }
