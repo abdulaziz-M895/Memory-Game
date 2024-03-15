@@ -11,7 +11,6 @@ document
     }
     this.parentElement.remove();
     startGame();
-    makeLeaderboard();
   });
 
 window.addEventListener("keydown", (e) => {
@@ -118,6 +117,8 @@ function gameWon() {
   document.body.append(div);
 
   addToLeaderboard(userName, triesCount);
+
+  makeLeaderboard();
 }
 
 function checkWinCondition() {
