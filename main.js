@@ -176,13 +176,13 @@ function countdown(duration) {
 
 // Function to retrieve leaderboard data from local storage
 function getLeaderboardData() {
-  const leaderboardData = localStorage.getItem("leaderboard");
+  const leaderboardData = sessionStorage.getItem("leaderboard");
   return leaderboardData ? JSON.parse(leaderboardData) : [];
 }
 
 // Function to save leaderboard data to local storage
 function saveLeaderboardData(data) {
-  localStorage.setItem("leaderboard", JSON.stringify(data));
+  sessionStorage.setItem("leaderboard", JSON.stringify(data));
 }
 
 // Function to add a new entry to the leaderboard
